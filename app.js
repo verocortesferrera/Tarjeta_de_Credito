@@ -22,41 +22,40 @@ function isValidCard(numberForCard){ // funcion para ingresar datos de tarjeta
         //revierto el array
         var reverseArray = newArrayNumber.reverse();
 
-  		 //variables
+  		 //variables para el algoritmo
         var sumTotal = 0;//variable que sumará las cifras
         var cont = 1;//contará cada vez que se ejecute un ciclo
         var posPar = [];//guardará los numeros que deben ser multiplicados por 2
         var posImpar = [];//guardará los numeros que no se deben multiplicar
         
         //for para recorrer el nuevo array "newArrayNumber" y comenzar a validar
-        for(var j=0; j<newArrayNumber.length; j++){
-            //si el contador es impar
-            if(cont%2!==0){
-                //agrego los numeros al array "posImpar"
-                posImpar.push(newArrayNumber[j]);
-            }else{
-                //si no, los multiplico por 2 y los agrego al array "posPar"
-                posPar.push(newArrayNumber[j]*2);
+        for(var j=0; j < newArrayNumber.length; j++){
+            
+            if(cont % 2 !== 0){ //si el contador es impar
+                posImpar.push(newArrayNumber[j]); //agrego los numeros al array "posImpar"
+
+            }else{      
+                posPar.push(newArrayNumber[j]*2); //si no, los multiplico por 2 y los agrego al array "posPar"
             }
             cont++;
         }
-        //el arreglo "posPar" lo uno con un join y luego separo las cifras con split
-        posPar = posPar.join("").split("");
-        arrFinal = posPar.concat(posImpar);//junto a los 2 array en uno
-        for(var k=0; k<arrFinal.length; k++){//sumo todas las cifras y le calculo el resto
-            sumTotal += (arrFinal[k]%10);
+    
+        posPar = posPar.join("").split("");//el arreglo "posPar" lo uno con un join y luego separo las cifras con split
+        arryFinal = posPar.concat(posImpar);//junto a los 2 array en uno
+
+        for(var k = 0; k < arryFinal.length; k ++){//sumo todas las cifras y le calculo el resto
+            sumTotal += (arryFinal[k]%10);// dividio por 0 es la formula para comprobar que es valida
         }
+
         sumTotal = sumTotal%10;//al total le calculo el resto
-        if(sumTotal===0){//si es 0
-            return alert("la tarjeta es valida");
+
+        if(sumTotal === 0){//si es 0
+            return alert("Tarjeta es valida");
         }else{
-            return alert("la tarjeta es invalida");
+            return alert("Tarjeta es invalida");
         }
-
-  	
- 	// for que recorra los pares (parte de 1 para que en el index parta del par)
-
 	
 	} while (numberForCard == "" || numberForCard.test(number) == false);// pero si no es numero y si esta vacio retorna el do
 }
+
 isValidCard();
